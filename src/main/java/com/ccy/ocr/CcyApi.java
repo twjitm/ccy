@@ -6,16 +6,19 @@ import net.sourceforge.tess4j.Tesseract;
 import net.sourceforge.tess4j.util.ImageHelper;
 
 import javax.imageio.ImageIO;
+
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 
 
-public class Test {
+public class CcyApi {
 
 
-    /**
+   /* *//**
      * @param args
-     */
+     *//*
 
     public static void main(String[] args) {
 
@@ -25,7 +28,7 @@ public class Test {
 
         try {
 
-           // String maybe = new OCR().recognizeText(new File("f:test.png"), "png");
+            // String maybe = new OCR().recognizeText(new File("f:test.png"), "png");
             //System.out.println(maybe);
             testEn();
         } catch (Exception e) {
@@ -36,14 +39,11 @@ public class Test {
 
         }
 
-    }
+    }*/
 
     //使用英文字库 - 识别图片
-    public static void testEn() throws Exception {
-        String[] path = new String[]{"c:jiaqunshougua.png", "f:yangben/Two_Tigers.jpg", "f:yangben/mlh.png",
-                "f:dt.gif"};
-        File imageFile = new File(path[1]);
-        BufferedImage image = ImageIO.read(imageFile);
+    public static void testEn(String fileName, File file) throws Exception {
+        BufferedImage image = ImageIO.read(file);
         //对图片进行处理
         image = convertImage(image);
         ITesseract instance = new Tesseract();//JNA Interface Mapping
@@ -51,14 +51,36 @@ public class Test {
         /**
          *
          */
-        //instance.setLanguage("eng");//添加中文字库
+        // instance.setLanguage("eng");//添加中文字库
+        List<String> config = new ArrayList<String>();
+        // config.add("数字");
+        // config.add("")
+        //config.add("音符");
+        instance.setConfigs(config);
+        instance.setOcrEngineMode(0);
         //矫正图片
         String result = instance.doOCR(image); //识别
         System.out.println("识别完成。。。。。。。。。。。。。");
         System.out.println(result);
         System.out.println("开始匹配训练。。。。。。。。。。。");
-        processorTwo_Tigers(result);
-
+        switch (ProcressData.index(fileName)) {
+            case 0:
+                ProcressData.pricessorkuaileqishi(result);
+                break;
+            case 1:
+                ProcressData.processorhutudeai(result);
+                break;
+            case 2:
+                ProcressData.processorhutudeai(result);
+                break;
+            case 3:
+                ProcressData.processorhutudeai(result);
+                break;
+        }
+        //processorTwo_Tigers(result);
+        // processorjiandanai(result);
+        // processorhutudeai(result);
+        ProcressData.pricessorkuaileqishi(result);
     }
 
     //对图片进行处理 - 提高识别度
@@ -71,6 +93,8 @@ public class Test {
         if ((imageSkewAngle > 0.05d || imageSkewAngle < -(0.05d))) {
             image = ImageHelper.rotateImage(image, -imageSkewAngle); //纠偏图像
         }
+
+
         image = ImageHelper.convertImageToGrayscale(image);
         //图像缩放 - 放大n倍图像
         image = ImageHelper.getScaledInstance(image, image.getWidth() * 5, image.getHeight() * 5);
@@ -78,13 +102,4 @@ public class Test {
     }
 
 
-    public static String processorTwo_Tigers(String towtigersStr) {
-
-        String[] strarr = towtigersStr.split("\n");
-        System.out.println(strarr[2]);
-        System.out.println(strarr[4]);
-        String[] one = strarr[2].split("\\|");
-        return null;
-
-    }
 }
