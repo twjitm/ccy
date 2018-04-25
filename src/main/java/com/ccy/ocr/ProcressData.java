@@ -4,7 +4,7 @@ package com.ccy.ocr;
  * Created by нд╫╜ on 2018/4/24.
  */
 public class ProcressData {
-    static String[] path = new String[]{
+    public static String[] path = new String[]{
             "f:yangben/hutudeai.png",
             "f:yangben/Two_Tigers.jpg",
             "f:yangben/jda.png",

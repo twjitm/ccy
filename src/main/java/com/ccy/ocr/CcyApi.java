@@ -16,9 +16,10 @@ import java.util.List;
 public class CcyApi {
 
 
-   /* *//**
+
+    /**
      * @param args
-     *//*
+     */
 
     public static void main(String[] args) {
 
@@ -30,7 +31,7 @@ public class CcyApi {
 
             // String maybe = new OCR().recognizeText(new File("f:test.png"), "png");
             //System.out.println(maybe);
-            testEn();
+            testEn("Two_Tigers",new File(ProcressData.path[1]));
         } catch (Exception e) {
 
             // TODO Auto-generated catch block
@@ -39,15 +40,17 @@ public class CcyApi {
 
         }
 
-    }*/
+    }
 
     //使用英文字库 - 识别图片
-    public static void testEn(String fileName, File file) throws Exception {
+    public static String testEn(String fileName, File file) throws Exception {
         BufferedImage image = ImageIO.read(file);
         //对图片进行处理
         image = convertImage(image);
         ITesseract instance = new Tesseract();//JNA Interface Mapping
-        instance.setDatapath("E:\\tessdata\\tessdata");
+       // instance.setDatapath("E:\\tessdata\\tessdata");
+
+        instance.setDatapath("G:\\git\\ccy\\tessdata");
         /**
          *
          */
@@ -63,24 +66,22 @@ public class CcyApi {
         System.out.println("识别完成。。。。。。。。。。。。。");
         System.out.println(result);
         System.out.println("开始匹配训练。。。。。。。。。。。");
-        switch (ProcressData.index(fileName)) {
+        int index = ProcressData.index(fileName);
+        switch (index) {
             case 0:
-                ProcressData.pricessorkuaileqishi(result);
+                result = ProcressData.processorhutudeai(result);
                 break;
             case 1:
-                ProcressData.processorhutudeai(result);
+                result = ProcressData.processorTwo_Tigers(result);
                 break;
             case 2:
-                ProcressData.processorhutudeai(result);
+                result = ProcressData.processorjiandanai(result);
                 break;
             case 3:
-                ProcressData.processorhutudeai(result);
+                result = ProcressData.processorhutudeai(result);
                 break;
         }
-        //processorTwo_Tigers(result);
-        // processorjiandanai(result);
-        // processorhutudeai(result);
-        ProcressData.pricessorkuaileqishi(result);
+        return result;
     }
 
     //对图片进行处理 - 提高识别度
