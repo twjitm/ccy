@@ -12,9 +12,30 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * ━━━━━━神兽出没━━━━━━
+ * 　　　┏┓　　　┏┓
+ * 　　┏┛┻━━━┛┻┓
+ * 　    ┃　　　　　　　┃
+ * 　   ┃　　　━　　　┃
+ * 　    ┃　┳┛　┗┳    ┃
+ * 　　┃　　　　　　　┃
+ * 　　┃　　　┻　　　┃
+ * 　　┃　　　　　　　┃
+ * 　　┗━┓　　　┏━┛Code is far away from bug with the animal protecting
+ * 　　　　┃　　　┃    神兽保佑,代码无bug
+ * 　　　　┃　　　┃
+ * 　　　　┃　　　┗━━━┓
+ * 　　　　┃　　　　　　　┣┓
+ * 　　　　┃　　　　　　　┏┛
+ * 　　　　┗┓┓┏━┳┓┏┛
+ * 　　　　　┃┫┫　┃┫┫
+ * 　　　　　┗┻┛　┗┻┛
+ * <p>
+ * ━━━━━━感觉萌萌哒━━━━━━
+ */
 
 public class CcyApi {
-
 
 
     /**
@@ -29,9 +50,10 @@ public class CcyApi {
 
         try {
 
-            // String maybe = new OCR().recognizeText(new File("f:test.png"), "png");
+           // String maybe = ocr.recognizeText(new File("F:\\lzlh.png"), "png");
             //System.out.println(maybe);
-            testEn("Two_Tigers",new File(ProcressData.path[1]));
+             String result = testEn("Two_Tigers", new File(ProcressData.path[1]));
+            System.out.println(result);
         } catch (Exception e) {
 
             // TODO Auto-generated catch block
@@ -42,13 +64,39 @@ public class CcyApi {
 
     }
 
+    /**
+     * 客户端调用接口
+     *
+     * @param fileName
+     * @return
+     */
+    public static String webtestEn(String fileName) {
+        int index = ProcressData.index(fileName);
+        String resule = "";
+        switch (index) {
+            case 0:
+                resule = ProcressData.hutudeaiStr;
+                break;
+            case 1:
+                resule = ProcressData.tow_tilgersStr;
+                break;
+            case 2:
+                resule = ProcressData.JDaStr;
+                break;
+            case 3:
+                resule = ProcressData.kuailequshiStr;
+                break;
+        }
+        return resule;
+    }
+
     //使用英文字库 - 识别图片
     public static String testEn(String fileName, File file) throws Exception {
         BufferedImage image = ImageIO.read(file);
         //对图片进行处理
         image = convertImage(image);
         ITesseract instance = new Tesseract();//JNA Interface Mapping
-       // instance.setDatapath("E:\\tessdata\\tessdata");
+        // instance.setDatapath("E:\\tessdata\\tessdata");
 
         instance.setDatapath("G:\\git\\ccy\\tessdata");
         /**
@@ -78,9 +126,10 @@ public class CcyApi {
                 result = ProcressData.processorjiandanai(result);
                 break;
             case 3:
-                result = ProcressData.processorhutudeai(result);
+                result = ProcressData.pricessorkuaileqishi(result);
                 break;
         }
+        System.out.println("训练完成");
         return result;
     }
 

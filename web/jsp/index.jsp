@@ -50,28 +50,38 @@
 
 <!-- Feature 1 -->
 <article id="first" class="container box style1 right">
-    <a href="#" class="image full"><img src="images/pic01.jpg" alt=""/></a>
+    <a href="#" class="image full"><img src="img/Two_Tigers.jpg" alt=""/></a>
     <div class="inner">
         <header>
             <h2>实例一<br/>
                 《两只老虎》</h2>
         </header>
-        <p>Tortor faucibus ullamcorper nec tempus purus sed penatibus. Lacinia pellentesque eleifend vitae est elit
-            tristique velit tempus etiam.</p>
+        <p> 12_3_1|1_2.3_1|3_4 5 ?53_4.5|5_65_4
+            31|5654|312 5.|1025|1 0|
+            12_3_1|1_2.3_1|3_4 5 ?53_4.5|5_65_4
+            31|5654|312 5.|1025|1 0|</p>
     </div>
 </article>
 
 <!-- Feature 2 -->
 <article class="container box style1 left">
-    <a href="http://ineedchemicalx.deviantart.com/art/Kingdom-of-the-Wind-348268044" class="image full"><img
-            src="images/pic02.jpg" alt=""/></a>
+    <a href="#" class="image full"><img
+            src="img/jda.png" alt=""/></a>
     <div class="inner">
         <header>
             <h2>实例二:<br/>
-                《两只老虎》</h2>
+                《简单爱》</h2>
         </header>
-        <p>Rhoncus mattis egestas sed fusce sodales rutrum et etiam ullamcorper. Etiam egestas scelerisque ac duis magna
-            lorem ipsum dolor.</p>
+        <p> ". . . . . .   . . . . . ︵     . . .  . . . .
+            "1__11231 1 0l1112‘626  0l2121630l\n" +
+            ". . .       . . . . . . .   . . . . .
+            "336 -l 1 1 1 3 1 0 l 3 1 2 6 2 0 0 l
+            ". . . . . . . .      . . . . . ︵        .︵.
+            "__1_1.12_61_501.6_6._j__626 Olft0 _1_2_6l\n"
+            ".            . .︵.      . .  .  . .︵. . . .
+            "6- 0 _1.2.6|5 - 0 5_3_~11- L_1L6L11
+            ".           . .︵.  .      . . . .        . .
+            "6- 0 2 6 l 6  -02 6 l6 -0 1     2 ";</p>
     </div>
 </article>
 
