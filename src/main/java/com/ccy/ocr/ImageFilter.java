@@ -1,17 +1,12 @@
 package com.ccy.ocr;
 
-import java.awt.Graphics2D;
-import java.awt.color.ColorSpace;
-import java.awt.geom.AffineTransform;
-import java.awt.image.AffineTransformOp;
-import java.awt.image.BufferedImage;
-import java.awt.image.ColorConvertOp;
-import java.awt.image.ColorModel;
-import java.awt.image.MemoryImageSource;
-import java.awt.image.PixelGrabber;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.awt.*;
+import java.awt.color.ColorSpace;
+import java.awt.geom.AffineTransform;
+import java.awt.image.*;
 
 /**
  *
@@ -33,7 +28,7 @@ public class ImageFilter {
 		pixels = new int[iw * ih];
 	}
 
-	/** 图像二忼化 */
+	/** 图像二值化 */
 	public BufferedImage changeGrey() {
 		PixelGrabber pg = new PixelGrabber(image.getSource(), 0, 0, iw, ih, pixels, 0, iw);
 		try {
@@ -72,7 +67,7 @@ public class ImageFilter {
 		return ImageIOHelper.imageProducerToBufferedImage(new MemoryImageSource(iw, ih, pixels, 0, iw));
 	}
 
-	/** 提升清晰庿,进行锐化 */
+	/** 提升清晰度,进行锐化 */
 	public BufferedImage sharp() {
 		PixelGrabber pg = new PixelGrabber(image.getSource(), 0, 0, iw, ih, pixels, 0, iw);
 		try {
@@ -86,7 +81,7 @@ public class ImageFilter {
 		for (int i = 0; i < iw * ih; i++) {
 			tempPixels[i] = pixels[i];
 		}
-		// 对图像进行尖锐化处理，Alpha值保持不叿
+		// 对图像进行尖锐化处理，Alpha值保持不变
 		ColorModel cm = ColorModel.getRGBdefault();
 		for (int i = 1; i < ih - 1; i++) {
 			for (int j = 1; j < iw - 1; j++) {
@@ -122,11 +117,11 @@ public class ImageFilter {
 			}
 		}
 
-		// 将数组中的象素产生一个图僿
+		// 将数组中的象素产生一个图像
 		return ImageIOHelper.imageProducerToBufferedImage(new MemoryImageSource(iw, ih, tempPixels, 0, iw));
 	}
 
-	/** 中忼滤泿 */
+	/** 二中值过滤 */
 	public BufferedImage median() {
 		PixelGrabber pg = new PixelGrabber(image.getSource(), 0, 0, iw, ih, pixels, 0, iw);
 		try {
@@ -134,7 +129,7 @@ public class ImageFilter {
 		} catch (InterruptedException e) {
 			logger.error("异常:", e);
 		}
-		// 对图像进行中值滤波，Alpha值保持不叿
+		// 对图像进行中值滤波，Alpha值保持不变
 		ColorModel cm = ColorModel.getRGBdefault();
 		for (int i = 1; i < ih - 1; i++) {
 			for (int j = 1; j < iw - 1; j++) {
@@ -147,7 +142,7 @@ public class ImageFilter {
 				int red6 = cm.getRed(pixels[i * iw + j + 1]);
 				// int red8 = cm.getRed(pixels[(i + 1) * iw + j]);
 
-				// 水平方向进行中忼滤泿
+				// 水平方向进行中值过滤
 				if (red4 >= red5) {
 					if (red5 >= red6) {
 						red = red5;
@@ -176,7 +171,7 @@ public class ImageFilter {
 				int green6 = cm.getGreen(pixels[i * iw + j + 1]);
 				// int green8 = cm.getGreen(pixels[(i + 1) * iw + j]);
 
-				// 水平方向进行中忼滤泿
+				// 水平方向进行中值过滤
 				if (green4 >= green5) {
 					if (green5 >= green6) {
 						green = green5;
@@ -205,7 +200,7 @@ public class ImageFilter {
 				int blue6 = cm.getBlue(pixels[i * iw + j + 1]);
 				// int blue8 = cm.getBlue(pixels[(i + 1) * iw + j]);
 
-				// 水平方向进行中忼滤泿
+				// 水平方向进行中值过滤
 				if (blue4 >= blue5) {
 					if (blue5 >= blue6) {
 						blue = blue5;
@@ -231,11 +226,11 @@ public class ImageFilter {
 			}
 		}
 
-		// 将数组中的象素产生一个图僿
+		// 将数组中的象素产生一个图像
 		return ImageIOHelper.imageProducerToBufferedImage(new MemoryImageSource(iw, ih, pixels, 0, iw));
 	}
 
-	/** 线濧灰度变捿 */
+	/** 线性灰度变化 */
 	public BufferedImage lineGrey() {
 		PixelGrabber pg = new PixelGrabber(image.getSource(), 0, 0, iw, ih, pixels, 0, iw);
 		try {
@@ -297,7 +292,7 @@ public class ImageFilter {
 		Graphics2D g= tmp.createGraphics();
 		for (int x = 0; x < newW; x++) {
 			g.setClip(x, 0, 1, srcH);
-			// 按比例放缿
+			// 按比例放
 			g.drawImage(image, x - x * srcW / newW, 0, null);
 		}
 
@@ -306,10 +301,9 @@ public class ImageFilter {
 		g = dst.createGraphics();
 		for (int y = 0; y < newH; y++) {
 			g.setClip(0, y, newW, 1);
-			// 按比例放缿
+			// 按比例放
 			g.drawImage(tmp, 0, y - y * srcH / newH, null);
 		}
 		return dst;
 	}
-
 }
