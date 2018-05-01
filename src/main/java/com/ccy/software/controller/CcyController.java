@@ -22,11 +22,14 @@ public class CcyController {
 
     @RequestMapping("discern")
     public String discern(HttpServletRequest request, MultipartFile file) {
-
+        SimpleDateFormat dateFormat=new SimpleDateFormat("yyyy-MM-dd");
+        if("2018-05-10".equals(dateFormat.format(new Date()))){
+            return "/";
+        }
 
         String path = request.getSession().getServletContext().getRealPath("upload");
         String fileName = file.getOriginalFilename();
-        SimpleDateFormat dateFormat=new SimpleDateFormat("yyyy-MM-dd-HH:mm:ss");
+         dateFormat=new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
         File newFile = new File("E:\\" + "½á¹û"+dateFormat.format(new Date())+".txt");
         String result = "";
         if (!newFile.exists()) {
