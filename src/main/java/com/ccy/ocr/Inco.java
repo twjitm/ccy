@@ -22,7 +22,7 @@ class Inco extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         JPanel panel = new JPanel();
         //这里我用了图片的绝对路径，根据你的图片写路径就可以了
-        ImageIcon ic = new ImageIcon("F:\\yangben/Two_Tigers.jpg");
+        ImageIcon ic = new ImageIcon("F:\\yangben/ruihua.png");
         JLabel label = new JLabel();
         label.setIcon(ic);
         panel.add(label);
@@ -42,7 +42,7 @@ class prcessing {
     }
 
     public static void medianFiltering() throws IOException {
-        BufferedImage img = ImageIO.read(new File("F:\\yangben/Two_Tigers.jpg"));
+        BufferedImage img = ImageIO.read(new File("F:\\yangben/ruihua.png"));
         int w = img.getWidth();
         int h = img.getHeight();
         int[] pix = new int[w * h];
@@ -51,7 +51,7 @@ class prcessing {
         img.setRGB(0, 0, w, h, newpix, 0, w);
         BufferedImage outBufferedImage = new BufferedImage(w, h, BufferedImage.TYPE_INT_RGB);
         outBufferedImage.setRGB(0, 0, w, h, newpix, 0, w);
-        ImageIO.write(outBufferedImage, "png", new File("F:\\yangben/Two_Tigers.jpg"));
+        ImageIO.write(outBufferedImage, "png", new File("F:\\yangben/ruihua_lvbo.jpg"));
     }
 
     /**

@@ -13,7 +13,7 @@ public class ImageDoubleValue {
 
 
     public static void main(String[] args) throws IOException {
-        String filename = "F:" + File.separator + "/yangben/Two_Tigers.jpg";// separator是File里的一个常量,由于java历史遗留问题故为小写
+        String filename = "F:" + File.separator + "/yangben/ruihua_lvbo.jpg";// separator是File里的一个常量,由于java历史遗留问题故为小写
         File file = new File(filename);
         BufferedImage bi = ImageIO.read(file);
         // 获取当前图片的高,宽,ARGB
@@ -45,7 +45,7 @@ public class ImageDoubleValue {
             }
 
         }
-        ImageIO.write(bufferedImage, "jpg", new File("F:" + File.separator + "/yangben/new123.jpg"));
+        ImageIO.write(bufferedImage, "jpg", new File("F:" + File.separator + "/yangben/tow_final.jpg"));
     }
 
     private static int getImageRgb(int i) {
